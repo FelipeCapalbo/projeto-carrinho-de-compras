@@ -20,12 +20,14 @@ public class ProjetoAV {
         Locale.setDefault(Locale.US); 
         //DECLARAÇÃO DAS VARIAVEIS DE : NUM , NUM1 : PARA OS SWITCH     QUANTT: RECEBE A QUANTIDADE DE PRODUTROS DO CARRIN NO WILLE
         // QTD : RECEBE A SOLUCAO PARA SAIR DO PROGRAMA DE COMPRAS
-        int num , num1, qtd = 0, quant =0;
-        Scanner sc;
+        int num , num1, qtd = 0, quant =0 ;
+        
+        int tam1=0, tam2=0 ,tam=0,tamEletro=0,tamAlimentos=0,tamHigi=0;
+        Scanner sc,sd;
        
         //SCANNER DE INTEIROS 
         sc = new Scanner(System.in) ;
-       
+       sd = new Scanner(System.in) ;
         
         
     //instanciacao dos Alimentos
@@ -49,13 +51,14 @@ public class ProjetoAV {
     Higiene pastaB = new Higiene("Gel dental Pro-White 90g", 20190014, "Hinode", 11.99, 90 );
     Higiene ShampooD = new Higiene("Shampo Anti-Idade Nutri Repair Caviar & Pérolas 300ml", 20190015, "Lacan", 39.02, 300);
     Higiene ShampooE = new Higiene("Shampoo Anticaspa  Ice Cool Menthol 400ml", 20190016, "Clear Men", 21.50, 400);
-    Higiene saboneteF = new Higiene("Sabonete em Barra Óleo de Argan 90g", 20190017, "Dove", 2.89, 90);
+    Higiene saboneteF = new Higiene("Sabonete em Barra Óleo de Argan 90g", 20190017, "Dove.39,", 2.89, 90);
     Higiene saboneteG = new Higiene("Sabonete em Barra Iluminadora 90g", 20190018, "Johnson`s", 2.15, 90);
     
    
  //CENRT
-        System.out.println("-----SEJA BEM VINDO AO SMARTCAR-----");
-        System.out.println("Comece as suas compras...\n"); //
+            System.out.println("");
+        System.out.println("          ---------------SEJA BEM VINDO AO SMARTCAR---------------");
+        System.out.println("\n\n      Comece as suas compras...\n"); //
         
  
         while ( quant < 10) {
@@ -70,42 +73,46 @@ public class ProjetoAV {
                     
                         // APRESENTA ELETRONICOS 
             	case 1:
-            	mostrarEletronicos();
-            	num1=sc.nextInt();
-            	switch(num1){
-                    case 1: Carrinho.adicionar(tv55);
+                tamEletro=Carrinho.tam();   
+                while ( tamEletro < 10){
+                    mostrarEletronicos();
+                    num1=sc.nextInt();
+                    switch(num1){
+                        case 1: Carrinho.adicionar(tv55);
                         
-                        break;    
-                    case 2:
-                       	Carrinho.adicionar(tv65);
-                        break;
+                            break;    
+                        case 2:
+                            Carrinho.adicionar(tv65);
+                            break;
                         
-                    case 3:
-                        Carrinho.adicionar(sommine);
-                        break;
+                        case 3:
+                            Carrinho.adicionar(sommine);
+                            break;
                         
-                    case 4:
-                        Carrinho.adicionar(somtorre);
-                        break;
+                        case 4:
+                            Carrinho.adicionar(somtorre);
+                            break;
                         
-                    case 5:
-                        Carrinho.adicionar(iphone);
-                        break;
+                        case 5:
+                            Carrinho.adicionar(iphone);
+                            break;
                         
-                    case 6:
-                        Carrinho.adicionar(s10);
-                        break ;
-                    case 7:
-                        System.out.println("====== SEU CARRINHO ====== \n");
-                        System.out.println(Carrinho.listarProd());
-                        
-                        System.out.println("                  =========> TOTAL : R$" + Carrinho.totalCompra());
-                        System.out.println("\n\n");   
-                        break;
-                    case 8:
-                        
-                        
-                        break;
+                        case 6:
+                            Carrinho.adicionar(s10);
+                            break ;
+                        case 7:
+                            System.out.println("\n\n         ====== SEU CARRINHO ====== \n");
+                            System.out.println(Carrinho.listarProd());
+                            System.out.println("\nTotal de Produtos \n"
+                                             + "        no Carrin ====> "+quant);
+                            System.out.println("                  =========> TOTAL : R$" + Carrinho.totalCompra());
+                            System.out.println("\n\n");   
+                            break;
+                        case 8:
+                           tam=11;
+                           
+                            break; 
+                    
                     case 9:
                        System.out.println(Carrinho.listarProd());
                        System.out.println("                  =========> TOTAL : R$" + Carrinho.totalCompra());
@@ -117,14 +124,22 @@ public class ProjetoAV {
                     
                   
                              }
-                       quant = Carrinho.tam()+qtd;
-           break;
-            
+                      //se entrar no 9
+                       tamEletro=Carrinho.tam()+tam+qtd;
+                       //se entrar no 8
+                       
+                      quant = Carrinho.tam()+qtd;
+                }
+           
+                         break;       
+
            
                     // APRESENTA HIGIENE 
             case 2:
+               tamHigi=Carrinho.tam();
+                while ( tamHigi < 10){
                 mostrarHigiene();
-                num1=sc.nextInt();
+                num1=sd.nextInt();
                 switch (num1){
                     case 1:
                         Carrinho.adicionar(pastaC);
@@ -146,14 +161,15 @@ public class ProjetoAV {
                         break;
                     case 7:
                         //mostrar lista
-                        System.out.println("====== SEU CARRINHO ====== \n");
-                        System.out.println(Carrinho.listarProd());
-                        
-                        System.out.println("                  =========> TOTAL : R$" + Carrinho.totalCompra());
-                        System.out.println("\n\n");   
-                        break;
+                            System.out.println("\n\n         ====== SEU CARRINHO ====== \n");
+                            System.out.println(Carrinho.listarProd());
+                            System.out.println("\nTotal de Produtos \n"
+                                             + "        no Carrin ====> "+quant);
+                            System.out.println("                  =========> TOTAL : R$" + Carrinho.totalCompra());
+                            System.out.println("\n\n");   
+                            break;
                     case 8:
-                        
+                        tam1=11;
                         
                         
                         break;
@@ -164,14 +180,20 @@ public class ProjetoAV {
                        qtd=11;
                        Carrinho.esvaziar();
                        System.out.println("==== COMPRA CONCLUIDA COM SUCESSO ====");                      
-                    break;               
+                       break;            
                 }
-                quant = Carrinho.tam()+qtd;
-                break;
+                        //se entrar no 9
+                       tamHigi=Carrinho.tam()+tam1+qtd;
+                       //se entrar no 8
+                       quant = Carrinho.tam()+qtd;
+                }
                 
+                break;
                 
                 // APRESENTA ALIMENTOS
             case 3:
+                tamAlimentos=Carrinho.tam();
+                while ( tamAlimentos < 10){
                 mostrarAlimentos();
     		num1=sc.nextInt();
     		switch(num1){
@@ -195,15 +217,16 @@ public class ProjetoAV {
                         Carrinho.adicionar(carnefile);
                      	break ;
                     case 7:
-                        System.out.println("====== SEU CARRINHO ====== \n");
-                        System.out.println(Carrinho.listarProd());
-                        
-                        System.out.println("                  =========> TOTAL : R$" + Carrinho.totalCompra());
-                        System.out.println("\n\n");   
-                        break;
+                            System.out.println("\n\n         ====== SEU CARRINHO ====== \n");
+                            System.out.println(Carrinho.listarProd());
+                            System.out.println("\n\nTotal de Produtos \n"
+                                             + "        no Carrin ====> "+quant);
+                            System.out.println("                  =========> TOTAL : R$" + Carrinho.totalCompra());
+                            System.out.println("\n\n");   
+                            break;
                     case 8:
                         
-                        
+                        tam2=11;
                         
                         
                         break;
@@ -216,9 +239,32 @@ public class ProjetoAV {
                        System.out.println("==== COMPRA CONCLUIDA COM SUCESSO ====");
                     break;                        
                      }
-    		 quant = Carrinho.tam()+qtd ;
+                       //se entrar no 9
+                       tamAlimentos=Carrinho.tam()+tam2+qtd;
+                       //se entrar no 8
+                       quant = Carrinho.tam()+qtd;
+                }//fechamento do whille de alimentos
     		break ;	
-               
+            case 4:
+                System.out.println("\n\n         ====== SEU CARRINHO ====== \n");
+                System.out.println(Carrinho.listarProd());
+                System.out.println("\nTotal de Produtos \n"
+                                             + "        no Carrin ====> "+quant);
+                System.out.println("                  =========> TOTAL : R$" + Carrinho.totalCompra());
+                System.out.println("\n\n");
+                break ;
+            case 5:
+                System.out.println(Carrinho.listarProd());
+                System.out.println("                  =========> TOTAL : R$" + Carrinho.totalCompra());
+                System.out.println("\n\n");
+                qtd=11;
+                System.out.println("\nTotal de Produtos \n"
+                                + "        no Carrin ====> "+quant);
+                Carrinho.esvaziar();
+                System.out.println("==== COMPRA CONCLUIDA COM SUCESSO ====");
+                quant = Carrinho.tam()+qtd;
+                break ;
+                
         }//fim switch num
         
         
@@ -231,48 +277,59 @@ public class ProjetoAV {
                 // ISSO SÓ APARECE SE A COMPRA CHEGAR A 10 PRODUTOS :
                 
                         if(qtd != 11){
-                       System.out.println(Carrinho.listarProd());
-                       System.out.println("                  =========> TOTAL : R$" + Carrinho.totalCompra());
-                       System.out.println("\n\n");
-                       
-                       Carrinho.esvaziar();
-                       System.out.println("==== COMPRA CONCLUIDA COM SUCESSO ====");
+                        System.out.println(Carrinho.listarProd());
+                        System.out.println("                  =========> TOTAL : R$" + Carrinho.totalCompra());
+                        System.out.println("\n\n");
+                        System.out.println("\nTotal de Produtos \n"
+                                             + "        no Carrin ====> "+quant);
+                        Carrinho.esvaziar();
+                        System.out.println("==== COMPRA CONCLUIDA COM SUCESSO ====");
                         }
                         
                         
              // FECHAMENTO DO SCANNER            
        sc.close();
-       
+       sd.close();
        
 // fim do pacote       
 }
         
         /// METODOS QUE VÃO APARECER NA TELA, TALVEZ DAVA PRA TER COLOCADO EM UMA CLASSE MAS...
         
+	
     static void mostrarProdutos() {
-        	System.out.println("                  ==================================================\n"
-                                     + "                                    1-Eletronicos\n\n"
-                       			+ "                                    2-Higiene\n\n"
-                      				+ "                                    3-Alimentos\n"
-                                           + "                  ==================================================");
-        	}
-    static void mostrarEletronicos(){
-        System.out.println("\n   ================================== ESCOLHA UM TIPO DE ELETRONICO ==================================\n");
+    	System.out.println("         ==============================================================\n"
+                                 + "                                    1- Eletronicos\n\n"
+                   			+ "                                    2- Higiene\n\n"
+                  				+ "                                    3- Alimentos\n\n"
+                   			+"                       4- Ver carrinho     5-Concluir compra \n\n"
+                                       + "         ==============================================================");
+    	
+
+}
+static void mostrarEletronicos(){
+        System.out.println("\n   ================================== SELECIONE UM ELETRONICO ==================================");
+        System.out.println("                                                                                   PRODUTOS \n"
+        				 + "                                                                                    NO CARRIN => " +Carrinho.tam()+"\n\n");
+        
 	System.out.println(   "   1-Smart Tv Led 55 Ultra Hd 4k LG Preta R$2.690,00" + "         " + "4-Mini System Torre Bluetooth Sony R$4.499,00 Azul \n"
 			+ "\n   2-Smart Tv Led 65 4k Sony Branco R$6.369,00" + "              " + "5-iPhone XR 64GB iOS 12 Vermelho R$4.399,00 \n"
 		+ "\n   3-Mini System 2150W RMS Philco Preto R$1.999,00" + "          " + "6-Smartphone Galaxy S10 128GB Samsung Branco R$4.999,00 \n"
 											
-							+ "\n            7- VER CARRINHO   8- ADICIONAR OUTROS PRODUTOS   9- CONCLUIR COMPRA  "
+							+ "\n                7- VER CARRINHO   8- ADICIONAR OUTROS PRODUTOS   9- CONCLUIR COMPRA  "
 				);
     }
     
     static void mostrarHigiene(){
-        System.out.println("\n   ================================== ESCOLHA UM TIPO DE HIGIENE ==================================\n");
+        System.out.println("\n   ================================== SELECIONE UM PRODUTO DE HIGIENE ==================================\n");
+            System.out.println("                                                                                   PRODUTOS \n"
+        				 + "                                                                                    NO CARRIN => " +Carrinho.tam()+"\n\n");
+        
 	System.out.println(   "   1-Creme Dental Tripla Ação Colgate  R$3.39 90g"+"                "+"4-Shampoo Anticaspa  Ice Cool Menthol 400ml Clear Men R$21.50 400ml \n"
 			+ "\n   2-Gel dental Pro-White Hinode R$11.99 90g"  +"                     "+  "5-Sabonete em Barra Óleo de Argan Dove R$2.89 90g \n"
 		+ "\n   3-Shampo Anti-Idade Nutri Repair Caviar R$39.02 300ml"  +"         "+  "6-Sabonete em Barra Iluminadora Johnson's R$2.15 90g  \n"
 												
-	                    + "\n            7- VER CARRINHO   8- ADICIONAR OUTROS PRODUTOS   9- CONCLUIR COMPRA  "
+	                    + "\n                7- VER CARRINHO   8- ADICIONAR OUTROS PRODUTOS   9- CONCLUIR COMPRA  "
 		);
         
         
@@ -280,12 +337,15 @@ public class ProjetoAV {
     }
     
     static void mostrarAlimentos() {
-	System.out.println("\n   ================================== ESCOLHA UM TIPO DE  ALIMENTO==================================\n");
+	System.out.println("\n   ================================== SELECIONE UM ALIMENTO==================================\n");
+            System.out.println("                                                                                   PRODUTOS \n"
+        				 + "                                                                                    NO CARRIN => " +Carrinho.tam()+"\n\n");
+        
 	System.out.println(   "   1-Arroz Agulhinha Qualitá 1Kg R$12.90" + "         " + "4-Feijão Fradinho em conserva Camil R$5.15 1Kg \n"
 			+ "\n   2-Arroz Integral Tipo 1 1Kg TAEQ R$4.15" + "              " + "5-Fraldinha Bovina Resfriada FriBo R$43.56 1Kg\n"
 			+ "\n   3-Feijão Carioca tipo 1 Qualita R$5.79 1Kg" + "          " + "6-Contra Filé Bovino Resfriado Angus R$50.99 1Kg \n"
 											
-			+ "\n            7- VER CARRINHO   8- ADICIONAR OUTROS PRODUTOS   9- CONCLUIR COMPRA  "
+			+ "\n                7- VER CARRINHO   8- ADICIONAR OUTROS PRODUTOS   9- CONCLUIR COMPRA  "
 				);    	
     	
     	
